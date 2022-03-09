@@ -8,7 +8,7 @@ export default class CreateCategoryController {
 
         const createCategoryService = new CreateCategoryService();
 
-        const category = createCategoryService.execute({ name });
+        const category = await createCategoryService.execute({ name });
 
         return response.status(201).json({
             status: "success",
