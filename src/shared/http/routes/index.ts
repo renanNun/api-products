@@ -1,5 +1,5 @@
 import { Router } from "express";
-import categoriesRouter from "../../../modules/category/routes/category.router";
+import categoriesRouter from "@modules/category/routes/category.router";
 
 const routes = Router();
 

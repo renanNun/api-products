@@ -1,10 +1,10 @@
 import "reflect-metadata";
-import AppError from "../errors/AppError";
 import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
 import cors from "cors";
 import routes from "./routes";
-import '../database/index';
+import AppError from "@errors/AppError";
+import '@database/index';
 
 
 const app = express();
