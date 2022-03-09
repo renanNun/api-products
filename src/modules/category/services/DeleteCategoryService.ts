@@ -1,4 +1,5 @@
 import AppError from "@errors/AppError";
+import RedisCache from "@shared/cache/RedisCache";
 import { getCustomRepository } from "typeorm";
 import CategoryRepository from "../repositories/CategoryRepository";
 
@@ -16,6 +17,8 @@ export default class DeleteCategoryService {
         if (!category) {
             throw new AppError('Category not found');
         }
+
+        await RedisCache.invalidate('categories');
 
         await categoryRepository.remove(category);
     }

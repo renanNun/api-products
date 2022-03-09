@@ -1,3 +1,4 @@
+import RedisCache from "@shared/cache/RedisCache";
 import { getCustomRepository } from "typeorm";
 import Category from "../entities/Category";
 import CategoryRepository from "../repositories/CategoryRepository";
@@ -14,6 +15,8 @@ export default class CreateCategoryService {
         const category = categoryRepository.create({
             name
         });
+
+        await RedisCache.invalidate('categories');
 
         await categoryRepository.save(category);
 

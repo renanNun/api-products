@@ -1,4 +1,5 @@
 import AppError from "@errors/AppError";
+import RedisCache from "@shared/cache/RedisCache";
 import { getCustomRepository } from "typeorm";
 import Category from "../entities/Category";
 import CategoryRepository from "../repositories/CategoryRepository";
@@ -23,6 +24,8 @@ export default class UpdateCategoryService {
         if (categoryWithSameName && categoryWithSameName.id !== id) {
             throw new AppError('Category already exists');
         }
+
+        await RedisCache.invalidate('categories');
 
         category.name = name;
 
