@@ -10,6 +10,7 @@ Docker para criação de Cache
 - [typeorm](https://www.npmjs.com/package/typeorm)
 - [ioredis](https://www.npmjs.com/package/ioredis)
 - [cors](https://www.npmjs.com/package/cors)
+- [bcryptjs](https://www.npmjs.com/package/bcryptjs)
 
 ## Utilizando o Projeto
 
@@ -18,31 +19,59 @@ Docker para criação de Cache
 Criando a imagem do docker pela primeira vez
 
 ```
-  docker-compose up -d
+    docker-compose up -d
 ```
 
 <b>Instalando o Projeto com npm:</b>
 
 ```
-  npm install
+    npm install
 ```
 <b>Instalando o Projeto com yarn:</b>
 
 ```
-yarn install
+    yarn install
+```
+
+### Migrações
+
+#### Criando as Tabelas
+
+<b>Utilizando o npm:</b>
+
+```
+    npm run typeorm migration:run
+```
+<b>Utilizando o yarn:</b>
+
+```
+    yarn typeorm migration:run
+```
+
+#### Revertendo as migrações
+
+<b>Utilizando o npm:</b>
+
+```
+    npm run typeorm migration:revert
+```
+<b>Utilizando o yarn:</b>
+
+```
+    yarn typeorm migration:revert
 ```
 
 ### Levantando o servidor
 
-<b>Instalando o Projeto com npm:</b>
+<b>Utilizando o npm:</b>
 
 ```
-  npm run dev
+    npm run dev
 ```
-<b>Instalando o Projeto com yarn:</b>
+<b>Utilizando o yarn:</b>
 
 ```
-yarn dev
+    yarn dev
 ```
 
 
@@ -67,6 +96,10 @@ localhost:3000/categories
 * Produtos
 
 localhost:3000/products
+
+* Users
+
+localhost:3000/users
 
 * Invalidar o Cache
 

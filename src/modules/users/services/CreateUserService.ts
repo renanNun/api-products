@@ -3,18 +3,17 @@ import { getCustomRepository } from "typeorm";
 import User from "../entities/User";
 import userRoles from "../enums/user.roles";
 import UsersRepository from "../repositories/UsersRepository";
+import { hash } from 'bcryptjs';
 
 interface IRequest {
     name: string;
     email: string;
     password: string;
-    phone?: string;
-    role?: userRoles;
 }
 
 export default class CreateUserService {
 
-    public async execute({name, email}: IRequest): Promise<User> {
+    public async execute({name, email, password}: IRequest): Promise<User> {
 
         const usersRepository = getCustomRepository(UsersRepository);
 
@@ -28,11 +27,20 @@ export default class CreateUserService {
             throw new AppError("User already exists.");
         }
 
+        const hashedPassword = await hash(password, 8);
+
         const user = usersRepository.create({
             name,
             email,
-            password: "123456"});
+            password: hashedPassword
+        });
+
+        await usersRepository.save(user);
+
+        return user;
 
     }
+
+
 
 }
