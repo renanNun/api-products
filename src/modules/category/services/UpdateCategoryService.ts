@@ -25,7 +25,7 @@ export default class UpdateCategoryService {
             throw new AppError('Category already exists');
         }
 
-        await RedisCache.invalidate('categories');
+        await RedisCache.invalidatePrefix("categories");
 
         category.name = name;
 

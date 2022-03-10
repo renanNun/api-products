@@ -16,9 +16,7 @@ routes.use('/password', passwordRouter);
 
 routes.get('/invalidate-cache', (request, response) => {
 
-    RedisCache.invalidate('categories');
-    RedisCache.invalidate('products');
-    RedisCache.invalidate('users');
+    RedisCache.invalidateAll();
 
     return response.status(200).json({
         status: "success",

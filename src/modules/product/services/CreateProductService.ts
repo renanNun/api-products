@@ -1,5 +1,6 @@
 import AppError from "@errors/AppError";
 import CategoryRepository from "@modules/category/repositories/CategoryRepository";
+import RedisCache from "@shared/cache/RedisCache";
 import { getCustomRepository } from "typeorm";
 import Product from "../entities/Product";
 import ProductRepository from "../repositories/ProductRepository";
@@ -34,6 +35,8 @@ export default class CreateProductService {
         product.category = categoryExists;
 
         await productRepository.save(product);
+
+        await RedisCache.invalidatePrefix("products");
 
         return product;
     }

@@ -8,7 +8,7 @@ export default class ListUsersController {
 
         const listUsersService = new ListUsersService();
 
-        const users = await listUsersService.execute({ page: Number(page), limit: Number(limit) });
+        const users = await listUsersService.execute(  page ? Number(page) : 1, limit ? Number(limit) : 100);
 
         return response.status(200).json({
             status: "success",

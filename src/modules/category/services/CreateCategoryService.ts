@@ -23,7 +23,7 @@ export default class CreateCategoryService {
             name
         });
 
-        await RedisCache.invalidate('categories');
+        await RedisCache.invalidatePrefix("categories");
 
         await categoryRepository.save(category);
 

@@ -12,6 +12,12 @@ class CategoryRepository extends Repository<Category>{
 
         return category;
     }
+
+    public async findAll(page: number = 1, limit: number = 100): Promise<Category[]> {
+        const categories = await this.createQueryBuilder().take(limit).skip((page - 1) * limit).getMany();
+
+        return categories;
+    }
 }
 
 export default CategoryRepository;

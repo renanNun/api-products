@@ -37,8 +37,8 @@ export default class CreateUserService {
 
         await usersRepository.save(user);
 
-        await RedisCache.invalidate('users');
-
+        await RedisCache.invalidatePrefix("users");
+        
         return user;
 
     }

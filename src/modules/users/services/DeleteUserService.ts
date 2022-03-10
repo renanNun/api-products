@@ -26,6 +26,6 @@ export default class DeleteUserService {
 
         await usersRepository.remove(user);
 
-        await RedisCache.invalidate("users");
+        await RedisCache.invalidatePrefix("users");
     }
 }

@@ -18,8 +18,8 @@ export default class DeleteCategoryService {
             throw new AppError('Category not found');
         }
 
-        await RedisCache.invalidate('categories');
-
+        await RedisCache.invalidatePrefix("categories");
+        
         await categoryRepository.remove(category);
     }
 

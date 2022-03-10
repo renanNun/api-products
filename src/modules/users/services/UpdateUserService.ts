@@ -32,7 +32,7 @@ export default class UpdateUserService {
 
         await userRepository.save(user);
 
-        await RedisCache.invalidate("users");
+        await RedisCache.invalidatePrefix("users");
 
         return user;
     }

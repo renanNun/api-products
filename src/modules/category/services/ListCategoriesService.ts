@@ -4,16 +4,18 @@ import Category from "../entities/Category";
 import CategoryRepository from "../repositories/CategoryRepository";
 
 export default class ListCategoriesService {
-    public async execute(): Promise<Category[]>{
+    public async execute(page: number, limit: number): Promise<Category[]>{
 
         const categoryRepository = getCustomRepository(CategoryRepository);
 
-        let categories = await RedisCache.get<Category[]>('categories');
+        let cacheKey = `categories:${page}:${limit}`;
+
+        let categories = await RedisCache.get<Category[]>(cacheKey);
 
         if(!categories) {
-            categories = await categoryRepository.find();
+            categories = await categoryRepository.findAll(limit, page);
 
-            await RedisCache.set('categories', categories);
+            await RedisCache.set(cacheKey, categories);
         }
 
         return categories;

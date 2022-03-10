@@ -4,18 +4,18 @@ import Product from "../entities/Product";
 import ProductRepository from "../repositories/ProductRepository";
 
 export default class ListProductsService {
-    public async execute(): Promise<Product[]> {
+    public async execute(page: number = 1, limit: number = 100): Promise<Product[]> {
         const productRepository = getCustomRepository(ProductRepository);
 
-        let products = await RedisCache.get<Product[]>("products");
+        let cacheKey = `products:${page}:${limit}`
+
+        let products = await RedisCache.get<Product[]>(cacheKey);
 
         if(!products) {
             
-            products = await productRepository.find({
-                relations: ["category"]
-            });
+            products = await productRepository.findAll(limit, page);
 
-            RedisCache.set("products", products);
+            RedisCache.set(cacheKey, products);
         }
 
         return products;

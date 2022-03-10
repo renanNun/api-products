@@ -26,8 +26,6 @@ export default class UpdateProductService {
             throw new AppError('Product not found')
         }
 
-        await RedisCache.invalidate('categories');
-
         if (name) {
             product.name = name;
         }
@@ -61,6 +59,8 @@ export default class UpdateProductService {
         }
 
         await productRepository.save(product);
+
+        await RedisCache.invalidatePrefix("products");
 
         return product;
     }
