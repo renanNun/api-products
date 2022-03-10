@@ -3,6 +3,7 @@ import { celebrate, Segments } from "celebrate";
 import { Router } from "express";
 import Joi from "joi";
 import CreateUserController from "../controllers/CreateUsersController";
+import DeleteUserController from "../controllers/DeleteUserController";
 import ListUsersController from "../controllers/ListUsersController";
 import ShowUserController from "../controllers/ShowUserController";
 import UpdateUserController from "../controllers/UpdateUserController";
@@ -50,6 +51,17 @@ usersRouter.put(
     }),
     isAuthenticated,
     new UpdateUserController().handle
+);
+
+usersRouter.delete(
+    "/:id",
+    celebrate({
+        [Segments.PARAMS]: {
+            id: Joi.string().uuid().required()
+        },
+    }),
+    isAuthenticated,
+    new DeleteUserController().handle
 );
 
 export default usersRouter;

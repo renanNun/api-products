@@ -100,13 +100,17 @@ localhost:3000/categories
 
 localhost:3000/products
 
-* Users
+* Usuários
 
 localhost:3000/users
 
 * Autenticação
 
 localhost:3000/auth
+
+* Recuperação de Senha
+
+localhost:3000/password/reset
 
 * Invalidar o Cache
 
