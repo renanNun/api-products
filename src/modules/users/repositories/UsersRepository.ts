@@ -33,4 +33,12 @@ export default class UsersRepository extends Repository<User> {
         return result;
     }
 
+    public async findAll(limit: number = 100, page: number = 1): Promise<User[]> {
+        const users = await this.createQueryBuilder().where({
+            active: true
+        }).take(limit).skip((page - 1) * limit).getMany();
+
+        return users;
+    }
+
 }
