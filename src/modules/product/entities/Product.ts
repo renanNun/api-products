@@ -1,7 +1,7 @@
 import Category from "@modules/category/entities/Category";
-import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-@Entity('product')
+@Entity('products')
 export default class Product {
     @PrimaryGeneratedColumn('uuid')
     id: string;
@@ -18,9 +18,9 @@ export default class Product {
     @Column({ type: 'varchar', length: 255, nullable: true })
     description: string;
 
-    @ManyToMany(() => Category)
-    @JoinTable()
-    categories: Category[];
+    @ManyToOne(() => Category)
+    @JoinColumn({ name: 'category_id' })
+    category: Category;
 
     @Column({ type: 'varchar', length: 255, nullable: true })
     image: string;

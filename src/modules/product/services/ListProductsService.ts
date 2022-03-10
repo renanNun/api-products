@@ -10,7 +10,10 @@ export default class ListProductsService {
         let products = await RedisCache.get<Product[]>("products");
 
         if(!products) {
-            products = await productRepository.find();
+            
+            products = await productRepository.find({
+                relations: ["category"]
+            });
 
             RedisCache.set("products", products);
         }

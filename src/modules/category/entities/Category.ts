@@ -1,4 +1,5 @@
-import { CreateDateColumn, Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import Product from "@modules/product/entities/Product";
+import { CreateDateColumn, Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany } from "typeorm";
 
 @Entity('categories')
 export default class Category {
@@ -7,6 +8,9 @@ export default class Category {
 
     @Column({type: 'varchar', length: 255, unique: true})
     name: string;
+
+    @OneToMany(() => Product, (product) => product.category)
+    products: Product[];
 
     @CreateDateColumn()
     createdAt: Date;

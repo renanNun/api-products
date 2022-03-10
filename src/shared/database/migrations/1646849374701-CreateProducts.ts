@@ -42,6 +42,11 @@ export class CreateProducts1646849374701 implements MigrationInterface {
                         isNullable: true,
                     },
                     {
+                        name: "category_id",
+                        type: 'uuid',
+                        isNullable: true,
+                    },
+                    {
                         name: 'createdAt',
                         type: 'timestamp',
                         default: 'now()',
@@ -52,6 +57,16 @@ export class CreateProducts1646849374701 implements MigrationInterface {
                         default: 'now()',
                     },
                 ],
+                foreignKeys: [
+                    {
+                        name: 'ProductCategory',
+                        columnNames: ['category_id'],
+                        referencedTableName: 'categories',
+                        referencedColumnNames: ['id'],
+                        onDelete: 'SET NULL',
+                        onUpdate: 'CASCADE',
+                    },
+                ]
             }),
         )
     }
