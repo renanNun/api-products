@@ -22,8 +22,8 @@ export default class User {
     @Column({ default: true })
     active: boolean;
 
-    @Column({ default: 'USER' })
-    role: userRoles;
+    @Column({ enum: userRoles, default: 'USER' })
+    role: string;
 
     @CreateDateColumn()
     createdAt: Date;

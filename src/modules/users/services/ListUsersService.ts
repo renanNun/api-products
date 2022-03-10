@@ -8,10 +8,10 @@ export default class ListUsersService {
         const usersRepository = getCustomRepository(UsersRepository);
 
         let users = await RedisCache.get<User[]>("users");
-
+        
         if(!users) {
             users = await usersRepository.find();
-
+            
             await RedisCache.set("users", users);
         }
 

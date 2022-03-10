@@ -1,4 +1,5 @@
-import { celebrate } from "celebrate";
+import isAuthenticated from "@shared/http/middlewares/isAuthenticated";
+import { celebrate, Segments } from "celebrate";
 import { Router } from "express";
 import Joi from "joi";
 import CreateUserController from "../controllers/CreateUsersController";
@@ -8,13 +9,14 @@ const usersRouter = Router();
 
 usersRouter.get(
     "/",
+    isAuthenticated,
     new ListUsersController().handle
 );
 
 usersRouter.post(
     "/",
     celebrate({
-        body: {
+        [Segments.BODY]: {
             name: Joi.string().min(3).required(),
             email: Joi.string().email().required(),
             password: Joi.string().min(6).required()

@@ -11,7 +11,7 @@ const categoriesRouter = Router();
 categoriesRouter.get('', new ListCategoriesController().handle);
 
 categoriesRouter.post(
-    '',
+    '/',
     celebrate({
         [Segments.BODY]: {
             name: Joi.string().min(3).required(),

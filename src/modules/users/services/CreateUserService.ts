@@ -1,9 +1,9 @@
 import AppError from "@errors/AppError";
 import { getCustomRepository } from "typeorm";
 import User from "../entities/User";
-import userRoles from "../enums/user.roles";
 import UsersRepository from "../repositories/UsersRepository";
 import { hash } from 'bcryptjs';
+import RedisCache from "@shared/cache/RedisCache";
 
 interface IRequest {
     name: string;
@@ -37,10 +37,10 @@ export default class CreateUserService {
 
         await usersRepository.save(user);
 
+        await RedisCache.invalidate('users');
+
         return user;
 
     }
-
-
 
 }

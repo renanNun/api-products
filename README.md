@@ -11,6 +11,8 @@ Docker para criação de Cache
 - [ioredis](https://www.npmjs.com/package/ioredis)
 - [cors](https://www.npmjs.com/package/cors)
 - [bcryptjs](https://www.npmjs.com/package/bcryptjs)
+- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
+- [class-transformer](https://www.npmjs.com/package/class-transformer)
 
 ## Utilizando o Projeto
 
