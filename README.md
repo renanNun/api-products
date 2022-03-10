@@ -85,7 +85,7 @@ Criando a imagem do docker pela primeira vez
 - [ ] CRUD de comentários
 - [ ] Upload de Imagens em Produtos
 - [ ] Upload de Avatar em usuários
-- [ ] Middlewares de autenticação
+- [x] Middlewares de autenticação
 - [ ] Paginação de Dados
 - [ ] Testes Automatizados
 

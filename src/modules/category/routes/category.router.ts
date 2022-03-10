@@ -1,3 +1,4 @@
+import isAuthenticated from "@shared/http/middlewares/isAuthenticated";
 import { celebrate, Joi, Segments } from "celebrate";
 import { Router } from "express";
 import CreateCategoryController from "../controllers/CreateCategoryController";
@@ -7,6 +8,8 @@ import ShowCategoryController from "../controllers/ShowCategoryController";
 import UpdateCategoryController from "../controllers/UpdateCategoryController";
 
 const categoriesRouter = Router();
+
+categoriesRouter.use(isAuthenticated);
 
 categoriesRouter.get('', new ListCategoriesController().handle);
 

@@ -1,3 +1,4 @@
+import isAuthenticated from "@shared/http/middlewares/isAuthenticated";
 import { celebrate, Joi, Segments } from "celebrate";
 import { Router } from "express";
 import CreateProductController from "../controllers/CreateProductController";
@@ -6,6 +7,8 @@ import ListProductsController from "../controllers/ListProductsController";
 import UpdateProductController from "../controllers/UpdateProductController";
 
 const productsRouter = Router();
+
+productsRouter.use(isAuthenticated);
 
 productsRouter.get('', new ListProductsController().handle);
 
