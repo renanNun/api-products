@@ -51,10 +51,11 @@ yarn dev
 - [x] CRUD de Produtos
 - [x] CRUD de Categorias
 - [ ] CRUD de usuários
-- [ ] CRUD de avaliações
+- [ ] CRUD de comentários
 - [ ] Upload de Imagens em Produtos
 - [ ] Upload de Avatar em usuários
 - [ ] Middlewares de autenticação
+- [ ] Paginação de Dados
 - [ ] Testes Automatizados
 
 ### Endpoints
@@ -66,3 +67,7 @@ localhost:3000/categories
 * Produtos
 
 localhost:3000/products
+
+* Invalidar o Cache
+
+localhost:3000/invalidate-cache
