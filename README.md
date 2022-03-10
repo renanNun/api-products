@@ -54,3 +54,15 @@ yarn dev
 - [ ] CRUD de avaliações
 - [ ] Upload de Imagens em Produtos
 - [ ] Upload de Avatar em usuários
+- [ ] Middlewares de autenticação
+- [ ] Testes Automatizados
+
+### Endpoints
+
+* Categorias
+
+localhost:3000/categories
+
+* Produtos
+
+localhost:3000/products
