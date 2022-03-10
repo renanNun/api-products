@@ -81,10 +81,11 @@ Criando a imagem do docker pela primeira vez
 
 - [x] CRUD de Produtos
 - [x] CRUD de Categorias
-- [ ] CRUD de usuários
+- [x] CRUD de usuários
 - [ ] CRUD de comentários
 - [ ] Upload de Imagens em Produtos
 - [ ] Upload de Avatar em usuários
+- [ ] Recuperação de Email e Senha
 - [x] Middlewares de autenticação
 - [ ] Paginação de Dados
 - [ ] Testes Automatizados
@@ -102,6 +103,10 @@ localhost:3000/products
 * Users
 
 localhost:3000/users
+
+* Autenticação
+
+localhost:3000/auth
 
 * Invalidar o Cache
 

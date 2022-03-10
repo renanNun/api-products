@@ -8,18 +8,8 @@ export default class UsersRepository extends Repository<User> {
         const user = await this.findOne({
             where: {
                 email,
+                active: true
             },
-        });
-
-        return user;
-    }
-
-    public async findByEmailWithPassword(email: string): Promise<User | undefined> {
-        const user = await this.findOne({
-            where: {
-                email,
-            },
-            select: ["id", "name", "email", "password", "avatar", "active", "role"],
         });
 
         return user;
@@ -29,6 +19,7 @@ export default class UsersRepository extends Repository<User> {
         const user = await this.findOne({
             where: {
                 email,
+                active: true
             },
             select: ["id", "name", "email", "password", "avatar", "active", "role"],
         });

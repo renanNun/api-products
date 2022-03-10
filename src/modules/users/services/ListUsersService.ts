@@ -10,7 +10,11 @@ export default class ListUsersService {
         let users = await RedisCache.get<User[]>("users");
         
         if(!users) {
-            users = await usersRepository.find();
+            users = await usersRepository.find({
+                where: {
+                    active: true
+                }
+            });
             
             await RedisCache.set("users", users);
         }

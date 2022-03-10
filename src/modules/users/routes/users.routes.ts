@@ -4,6 +4,8 @@ import { Router } from "express";
 import Joi from "joi";
 import CreateUserController from "../controllers/CreateUsersController";
 import ListUsersController from "../controllers/ListUsersController";
+import ShowUserController from "../controllers/ShowUserController";
+import UpdateUserController from "../controllers/UpdateUserController";
 
 const usersRouter = Router();
 
@@ -23,6 +25,31 @@ usersRouter.post(
         }
     }),
     new CreateUserController().handle
-)
+);
+
+usersRouter.get(
+    "/:id",
+    celebrate({
+        [Segments.PARAMS]: {    
+            id: Joi.string().uuid().required()
+        }
+    }),
+    isAuthenticated,
+    new ShowUserController().handle
+);
+
+usersRouter.put(
+    "/:id",
+    celebrate({
+        [Segments.PARAMS]: {
+            id: Joi.string().uuid().required()
+        },
+        [Segments.BODY]: {
+            name: Joi.string().min(3).required(),
+        },
+    }),
+    isAuthenticated,
+    new UpdateUserController().handle
+);
 
 export default usersRouter;
