@@ -1,8 +1,22 @@
 version: '3.9'
 
 services:
+    # app:
+    #     build: .
+    #     entrypoint: .docker/entrypoint.sh
+    #     container_name: app
+    #     ports:
+    #         - "8080:8080"
+    #     volumes:
+    #         - .:/home/node/app
+    #     depends_on:
+    #         - database
+    #         - cache
+    #         - test
+
     cache:
         image: redis
+        container_name: api-cache
         command: redis-server --appendonly yes
         hostname: redis
         ports:
@@ -12,33 +26,27 @@ services:
     
     database:
         image: postgres
+        container_name: api-database
         command: postgres
         hostname: postgres
         ports:
-            - 5432:5432
+            - 5961:5432
         volumes:
             - ./data/postgres:/var/lib/postgresql/data
         environment:
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: postgres
-            POSTGRES_MULTIPLE_DATABASES: project, tests
+            POSTGRES_DB: project
 
-    # api:
-    #     container_name: product-api
-    #     build: 
-    #         context: .
-    #     image: product-api
-    #     depends_on:
-    #         - cache
-    #         - database
-    #     ports:
-    #         - 8080:8080
-    #     environment:
-    #         REDIS_HOST: localhost
-    #         REDIS_PORT: 6379
-    #     links:
-    #         - cache
-    #         - database
-    #     volumes:
-    #         - ./:src
+    test:
+        image: postgres
+        container_name: api-database-test
+        ports:
+            - 5962:5432
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: tests
+        depends_on:
+            - database
         

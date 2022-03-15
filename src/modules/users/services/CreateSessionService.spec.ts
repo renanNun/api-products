@@ -1,3 +1,4 @@
+import connectionOptions from "@config/typeormTestConfig";
 import { getConnection, getConnectionManager, getCustomRepository } from "typeorm";
 import UsersRepository from "../repositories/UsersRepository";
 import CreateSessionService from "./CreateSessionService";
@@ -11,26 +12,13 @@ describe('CreateSession', () => {
 
     beforeAll(async () => {
         const connectionManager = getConnectionManager();
-        const connection = connectionManager.create({
-            type: 'postgres',
-            host: 'localhost',
-            port: 5432,
-            username: 'postgres',
-            password: 'postgres',
-            database: 'tests',
-            dropSchema: true,
-            entities: [
-                "./src/modules/**/entities/*.ts"
-            ],
-            synchronize: true,
-            logging: false
-        });
+        const connection = connectionManager.create(connectionOptions);
 
         await connection.connect();
 
         createUserService = new CreateUserService();
         
-        createUserService.execute({
+        await createUserService.execute({
             name: "John Doe",
             email: "johndee@example.com",
             password: "123456"

@@ -102,7 +102,7 @@ Criando a imagem do docker pela primeira vez
 - [ ] Recuperação de Email e Senha
 - [x] Middlewares de autenticação
 - [x] Paginação de Dados
-- [ ] Testes Automatizados
+- [x] Testes Automatizados para usuários
 
 ### Endpoints
 

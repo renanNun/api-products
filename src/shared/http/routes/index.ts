@@ -24,4 +24,11 @@ routes.get('/invalidate-cache', (request, response) => {
         });
 });
 
+routes.get('/', (request, response) => {
+    return response.status(200).json({
+        status: "success",
+        message: "Hello World"
+    });
+});
+
 export default routes;

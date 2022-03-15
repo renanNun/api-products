@@ -1,3 +1,4 @@
+import connectionOptions from "@config/typeormTestConfig";
 import AppError from "@errors/AppError";
 import { Connection, createConnection, getConnection, getConnectionManager } from "typeorm";
 import UsersRepository from "../repositories/UsersRepository";
@@ -9,20 +10,7 @@ describe('CreateUser', () => {
 
     beforeAll(async () => {
         const connectionManager = getConnectionManager();
-        const connection = connectionManager.create({
-            type: 'postgres',
-            host: 'localhost',
-            port: 5432,
-            username: 'postgres',
-            password: 'postgres',
-            database: 'tests',
-            dropSchema: true,
-            entities: [
-                "./src/modules/**/entities/*.ts"
-            ],
-            synchronize: true,
-            logging: false
-        });
+        const connection = connectionManager.create(connectionOptions);
 
         await connection.connect();
 
@@ -42,7 +30,7 @@ describe('CreateUser', () => {
 
     it('It should not be possible to create a user with the same email', async () => {
 
-        expect(createUserService.execute({
+        expect(await createUserService.execute({
             name: "John Doe",
             email: "johndoe@johndoe.com",
             password: "123456"
