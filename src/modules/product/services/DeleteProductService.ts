@@ -1,4 +1,5 @@
 import AppError from "@errors/AppError";
+import RedisCache from "@shared/cache/RedisCache";
 import { getCustomRepository } from "typeorm"
 import ProductRepository from "../repositories/ProductRepository"
 
@@ -18,6 +19,7 @@ export default class DeleteProductService {
         }
 
         await productRepository.remove(product);
-
+        
+        await RedisCache.invalidatePrefix("products");
     }
 }

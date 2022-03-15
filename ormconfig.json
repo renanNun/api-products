@@ -13,5 +13,11 @@
     ],
     "cli": {
       "migrationsDir": "./src/shared/database/migrations"
-    }
+    },
+    "seeds": [
+      "./src/shared/database/seeds/*.ts"
+    ],
+    "factories": [
+      "./src/shared/database/factories/*.ts"
+    ]
   }

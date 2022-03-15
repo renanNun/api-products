@@ -13,6 +13,7 @@ Docker para criação de Cache
 - [bcryptjs](https://www.npmjs.com/package/bcryptjs)
 - [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
 - [class-transformer](https://www.npmjs.com/package/class-transformer)
+- [typeorm-seeding](https://www.npmjs.com/package/typeorm-seeding)
 
 ## Utilizando o Projeto
 
@@ -63,6 +64,19 @@ Criando a imagem do docker pela primeira vez
     yarn typeorm migration:revert
 ```
 
+### Rodando Seeder da API
+
+<b>Utilizando o npm:</b>
+
+```
+    npm run seed
+```
+<b>Utilizando o yarn:</b>
+
+```
+    yarn seed
+```
+
 ### Levantando o servidor
 
 <b>Utilizando o npm:</b>
@@ -87,7 +101,7 @@ Criando a imagem do docker pela primeira vez
 - [ ] Upload de Avatar em usuários
 - [ ] Recuperação de Email e Senha
 - [x] Middlewares de autenticação
-- [ ] Paginação de Dados
+- [x] Paginação de Dados
 - [ ] Testes Automatizados
 
 ### Endpoints
