@@ -19,76 +19,7 @@ Docker para criação de Cache
 
 ### Instação
 
-Criando a imagem do docker pela primeira vez
-
-```
-    docker-compose up -d
-```
-
-<b>Instalando o Projeto com npm:</b>
-
-```
-    npm install
-```
-<b>Instalando o Projeto com yarn:</b>
-
-```
-    yarn install
-```
-
-### Migrações
-
-#### Criando as Tabelas
-
-<b>Utilizando o npm:</b>
-
-```
-    npm run typeorm migration:run
-```
-<b>Utilizando o yarn:</b>
-
-```
-    yarn typeorm migration:run
-```
-
-#### Revertendo as migrações
-
-<b>Utilizando o npm:</b>
-
-```
-    npm run typeorm migration:revert
-```
-<b>Utilizando o yarn:</b>
-
-```
-    yarn typeorm migration:revert
-```
-
-### Rodando Seeder da API
-
-<b>Utilizando o npm:</b>
-
-```
-    npm run seed
-```
-<b>Utilizando o yarn:</b>
-
-```
-    yarn seed
-```
-
-### Levantando o servidor
-
-<b>Utilizando o npm:</b>
-
-```
-    npm run dev
-```
-<b>Utilizando o yarn:</b>
-
-```
-    yarn dev
-```
+O Guia de instalação do projeto pode ser encontrado [aqui](https://github.com/renanNun/api-products/wiki/Instalação).
 
 
 ## To-do
@@ -104,28 +35,4 @@ Criando a imagem do docker pela primeira vez
 - [x] Paginação de Dados
 - [x] Testes Automatizados para usuários
 
-### Endpoints
-
-* Categorias
-
-localhost:3000/categories
-
-* Produtos
-
-localhost:3000/products
-
-* Usuários
-
-localhost:3000/users
-
-* Autenticação
-
-localhost:3000/auth
-
-* Recuperação de Senha
-
-localhost:3000/password/reset
-
-* Invalidar o Cache
-
-localhost:3000/invalidate-cache
+### [Endpoints](https://github.com/renanNun/api-products/wiki/Endpoints)
