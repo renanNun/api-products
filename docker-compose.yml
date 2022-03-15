@@ -21,7 +21,7 @@ services:
         environment:
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: postgres
-            POSTGRES_DB: project
+            POSTGRES_MULTIPLE_DATABASES: project, tests
 
     # api:
     #     container_name: product-api
